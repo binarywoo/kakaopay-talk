@@ -1,28 +1,29 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Provider } from 'react-redux'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+import Firebase, { FirebaseContext } from './contexts/firebase'
+import './App.less'
+import { SignIn, ChatList, Chat, NotFound } from './routes'
+import BaseLayout from './layouts/BaseLayout/BaseLayout'
 
-export default App;
+const App = ({ store }) => (
+  <Provider store={store}>
+    <FirebaseContext.Provider value={new Firebase()}>
+      <Router>
+        <BaseLayout>
+          <Switch>
+            <Route path='/sign-in' component={SignIn} />
+            <Route path='/chat-list' component={ChatList} />
+            <Route path='/chat/:key' component={Chat} />
+            <Route exact path='/' component={ChatList} />
+            <Route path='/404' component={NotFound} />
+            <Route component={NotFound} />
+          </Switch>
+        </BaseLayout>
+      </Router>
+    </FirebaseContext.Provider>
+  </Provider>
+)
+
+export default App

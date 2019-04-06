@@ -1,0 +1,37 @@
+.base-container {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.kakao-header {
+  background-color: #ffdc00;
+  border-bottom: 1px solid #e0c202;
+  .ant-divider {
+    background: rgba(0, 0, 0, 0.35);
+  }
+  .ant-page-header-title-view-title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 600px;
+    line-height: 1;
+  }
+}
+
+.sign-in-layout {
+  .middle-center {
+    height: calc(100vh - 54px);
+  }
+  form {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .kakao-header {
+    .ant-page-header-title-view-title {
+      max-width: 250px;
+    }
+  }
+}

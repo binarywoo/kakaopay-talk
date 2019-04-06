@@ -1,0 +1,18 @@
+.chat-list {
+  .ant-list-item-meta-title,
+  .ant-list-item-meta-description {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 600px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .chat-list {
+    .ant-list-item-meta-title,
+    .ant-list-item-meta-description {
+      max-width: 250px;
+    }
+  }
+}
