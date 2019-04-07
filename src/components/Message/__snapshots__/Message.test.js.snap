@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message 스냅샷과 매칭이 된다. 1`] = `
+<div
+  className="message-row other-message"
+>
+  <Divider
+    className="date-divider"
+  >
+    2019-01-01
+  </Divider>
+  <Avatar
+    icon="user"
+    shape="circle"
+    size="default"
+    src={null}
+    style={
+      Object {
+        "marginRight": 5,
+        "position": "absolute",
+      }
+    }
+  />
+  <Alert
+    className="message-box"
+    message="test"
+  />
+  <div
+    className="message-tag"
+  >
+    <span
+      className="fw-700"
+    >
+      test
+       · 
+    </span>
+    10:10
+  </div>
+</div>
+`;

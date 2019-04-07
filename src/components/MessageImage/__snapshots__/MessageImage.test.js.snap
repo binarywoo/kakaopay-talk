@@ -3,10 +3,10 @@
 exports[`MessageImage 스냅샷과 매칭이 된다. 1`] = `
 <div>
   <img
-    alt="https://firebasestorage.googleapis.com/v0/b/hand-pokemon-2.appspot.com/o/workshopImages%2FXL6bftAQxqyLPFSStXcdAnW9aoPFncOW?alt=media&token=36cca2b9-0591-4ff3-b27f-0137a2126808"
+    alt="https://s.pstatic.net/static/www/img/2018/sp_search.svg"
     onClick={[Function]}
     onLoad={[Function]}
-    src="https://firebasestorage.googleapis.com/v0/b/hand-pokemon-2.appspot.com/o/workshopImages%2FXL6bftAQxqyLPFSStXcdAnW9aoPFncOW?alt=media&token=36cca2b9-0591-4ff3-b27f-0137a2126808"
+    src="https://s.pstatic.net/static/www/img/2018/sp_search.svg"
     style={
       Object {
         "cursor": "pointer",
@@ -15,8 +15,8 @@ exports[`MessageImage 스냅샷과 매칭이 된다. 1`] = `
     }
   />
   <MyComponent
-    alt="https://firebasestorage.googleapis.com/v0/b/hand-pokemon-2.appspot.com/o/workshopImages%2FXL6bftAQxqyLPFSStXcdAnW9aoPFncOW?alt=media&token=36cca2b9-0591-4ff3-b27f-0137a2126808"
-    img="https://firebasestorage.googleapis.com/v0/b/hand-pokemon-2.appspot.com/o/workshopImages%2FXL6bftAQxqyLPFSStXcdAnW9aoPFncOW?alt=media&token=36cca2b9-0591-4ff3-b27f-0137a2126808"
+    alt="https://s.pstatic.net/static/www/img/2018/sp_search.svg"
+    img="https://s.pstatic.net/static/www/img/2018/sp_search.svg"
     onClose={[Function]}
     title={null}
     visible={false}

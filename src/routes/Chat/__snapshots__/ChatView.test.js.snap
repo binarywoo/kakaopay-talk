@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatView 스냅샷과 매칭이 된다. 1`] = `
+<ContentContainer
+  style={
+    Object {
+      "background": "rgb(18, 115, 222)",
+    }
+  }
+>
+  <div
+    className="smooth-padding"
+    style={
+      Object {
+        "padding": "12px 12px 68px 12px",
+      }
+    }
+  >
+    <MessageList
+      messages={
+        Array [
+          Object {
+            "content": "하이",
+            "key": "-LbnOJfNoldq3SD0xRIR",
+            "lastUpdate": "2019-04-06T16:04:55.757Z",
+            "type": "text",
+            "user": "-LbmTnQw-OjNS87fDbBt",
+            "userId": "이웅희",
+          },
+          Object {
+            "content": "하이",
+            "key": "-LbnOJfNolds3SD0xRIR",
+            "lastUpdate": "2019-04-06T16:06:55.757Z",
+            "type": "image",
+            "user": "-LbmTnQw-OjNS87fDbBt",
+            "userId": "이웅희",
+          },
+        ]
+      }
+      user={
+        Object {
+          "key": "-LbmTnQw-OjNS87fDbBt",
+          "userId": "이웅희",
+        }
+      }
+    />
+  </div>
+  <MessageInput
+    message=""
+    onChange={[Function]}
+    onClickInvitation={[Function]}
+    onSendMessage={[Function]}
+    sendImageMessage={[Function]}
+    setShowHiddenMenu={[Function]}
+    showHiddenMenu={false}
+  />
+  <InvitationModal
+    chat={
+      Object {
+        "key": "testKey",
+        "lastMessage": "test message",
+        "lastUpdate": "2019-04-06T18:32:11.433Z",
+        "title": "test chat",
+      }
+    }
+    onClickUser={[Function]}
+    onClose={[Function]}
+    show={false}
+    user={
+      Object {
+        "key": "-LbmTnQw-OjNS87fDbBt",
+        "userId": "이웅희",
+      }
+    }
+    userList={null}
+  />
+</ContentContainer>
+`;

@@ -1,36 +1,25 @@
 import React, { useCallback, useState, useEffect } from 'react'
-import { Affix, Button, Modal, Form, Input, List } from 'antd'
-import moment from 'moment'
+import { Affix, Button, Modal, Form, Input } from 'antd'
 import 'moment/locale/ko'
 import './index.less'
 
 import ContentContainer from '../../components/ContentContainer'
 import SpinContainer from '../../components/SpinContainer'
+import ChatList from './ChatList'
 
-const ChatListView = ({
-  form,
-  chatService,
-  user,
-  history,
-  location,
-  headerAction,
-  chatList
-}) => {
+const ChatListView = ({ form, user, chatList, createChat, goToChat }) => {
   const [showTitleModal, setShowTitleModal] = useState(false)
 
   useEffect(() => {
-    headerAction.receiveHeader({ title: '채팅방 목록', backPath: null })
+    window.quickScroller.to(0)
   }, [])
 
-  const getDateFormat = useCallback(item => {
-    const now = moment()
-    const dayDiff = now.diff(item.lastUpdate, 'days')
-    if (dayDiff < 1) return 'HH:mm'
-    else if (dayDiff < 365) return 'MM-DD'
-    else return 'YYYY-MM-DD'
+  const openChatTitleModal = useCallback(() => {
+    setShowTitleModal(true)
+    setTimeout(() => document.getElementById('title').focus())
   }, [])
 
-  const onCreateChat = useCallback(() => {
+  const handleOnCreateChat = useCallback(() => {
     form.validateFields((err, values) => {
       if (!err) {
         const newChat = {
@@ -40,56 +29,21 @@ const ChatListView = ({
           },
           lastUpdate: new Date().toISOString()
         }
-        chatService.postChat(newChat).then(chat => {
-          onClickChat(chat)
-        })
+        createChat(newChat)
       }
     })
   }, [])
 
-  const onClickChat = useCallback(chat => {
-    headerAction.receiveBackPath(`${location.pathname}${location.search}`)
-    history.push(`/chat/${chat.key}`)
-  })
-
   return (
     <ContentContainer>
       {!chatList && <SpinContainer />}
-      {chatList && (
-        <List
-          className='chat-list'
-          locale={{
-            emptyText: '채팅방이 없습니다.'
-          }}
-          style={{
-            padding: '0 12px'
-          }}
-          itemLayout='horizontal'
-          dataSource={chatList.slice().reverse()}
-          renderItem={item => {
-            moment.locale('ko')
-            return (
-              <List.Item
-                actions={[moment(item.lastUpdate).format(getDateFormat(item))]}
-                onClick={() => onClickChat(item)}
-                style={{ cursor: 'pointer' }}
-              >
-                <List.Item.Meta
-                  title={item.title}
-                  description={item.lastMessage}
-                />
-              </List.Item>
-            )
-          }}
-        />
-      )}
-      <Affix
-        offsetBottom={0}
-        // style={{ position: 'absolute', width: '100%', bottom: 0 }}
-      >
+      {chatList && <ChatList list={chatList} goToChat={goToChat} user={user} />}
+      <Affix offsetBottom={0}>
         <div
           style={{
-            padding: 12
+            padding: 12,
+            background: '#fff',
+            borderTop: '1px solid #dddddd'
           }}
         >
           <Button
@@ -97,7 +51,7 @@ const ChatListView = ({
             block
             type='primary'
             size='large'
-            onClick={() => setShowTitleModal(true)}
+            onClick={openChatTitleModal}
           >
             채팅방 만들기
           </Button>
@@ -109,7 +63,7 @@ const ChatListView = ({
         onCancel={() => setShowTitleModal(false)}
         okText='만들기'
         cancelText='취소'
-        onOk={onCreateChat}
+        onOk={handleOnCreateChat}
       >
         <Form>
           <Form.Item>
@@ -132,7 +86,7 @@ const ChatListView = ({
                     ? form.getFieldValue('title').length
                     : 0
                 }/20`}
-                onPressEnter={onCreateChat}
+                onPressEnter={handleOnCreateChat}
               />
             )}
           </Form.Item>

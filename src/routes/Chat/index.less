@@ -1,44 +1,76 @@
-.message-row {
-  padding-bottom: 6px;
-  &.my-message {
-    text-align: right;
-    .message-box {
-      background-color: #ffdc00;
-    }
-  }
-  &.other-message {
-    text-align: left;
-    .message-box {
-      margin-left: 40px;
-      background-color: #ffffff;
-    }
-    .message-tag {
-      margin-left: 40px;
-    }
-  }
-  .message-box {
-    max-width: 80%;
-    border: none;
-    display: inline-block;
-  }
-  .message-tag {
-    color: #ffffff;
-    font-size: 12px;
-  }
-  .date-divider {
-    color: #fff;
-    font-size: 12px;
-  }
-}
+@import '~antd/lib/style/themes/default.less';
 
 .chat-input-wrapper {
-  position: absolute;
-  width: 100%;
-  bottom: 0px;
+  position: fixed;
+  width: 800px;
+  bottom: 0;
   .ant-input-group-addon {
     cursor: pointer;
   }
   .ant-upload-list {
     display: none;
+  }
+}
+
+.hidden-menu {
+  overflow: hidden;
+  background: #fff !important;
+  &.hidden {
+    max-height: 0;
+  }
+  &.show {
+    max-height: 100px;
+  }
+  .ant-col {
+    text-align: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .ant-avatar {
+    cursor: pointer;
+    font-size: 18px;
+    display: block;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
+    &.invitation {
+      background: #4bbc70;
+    }
+    &.image {
+      background: #7a4bbc;
+    }
+    &.pay {
+      background: #4b7bbc;
+    }
+    &.map {
+      background: #bc4b72;
+    }
+    .anticon {
+      color: #fff;
+      font-size: 24px;
+      display: block;
+      line-height: 2.4;
+    }
+  }
+  -webkit-transition: max-height 0.3s;
+  -moz-transition: max-height 0.3s;
+  -ms-transition: max-height 0.3s;
+  -o-transition: max-height 0.3s;
+  transition: max-height 0.3s;
+}
+
+.start-at-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 800px;
+}
+
+@media screen and (max-width: 800px) {
+  .chat-input-wrapper {
+    width: 100%;
+  }
+  .start-at-bottom {
+    width: 100%;
   }
 }

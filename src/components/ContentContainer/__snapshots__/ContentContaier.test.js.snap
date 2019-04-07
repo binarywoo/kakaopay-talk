@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContentContainer 스냅샷과 매칭이 된다. 1`] = `
+<div
+  className="content-container"
+>
+  <SpinContainer />
+</div>
+`;

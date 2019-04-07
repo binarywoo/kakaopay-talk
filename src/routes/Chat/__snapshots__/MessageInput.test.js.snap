@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MessageInput 스냅샷과 매칭이 된다. 1`] = `
+<div
+  className="chat-input-wrapper"
+  offsetBottom={0}
+>
+  <div
+    style={
+      Object {
+        "backgroundColor": "#fff",
+        "borderTop": "1px solid #bbbbbb",
+        "padding": 12,
+      }
+    }
+  >
+    <Search
+      addonBefore={
+        <Icon
+          onClick={[Function]}
+          type="plus"
+        />
+      }
+      enterButton={
+        <Icon
+          type="arrow-up"
+        />
+      }
+      onChange={[Function]}
+      onSearch={null}
+      value=""
+    />
+  </div>
+  <div
+    className="hidden-menu hidden"
+  >
+    <Row
+      gutter={12}
+    >
+      <Col
+        span={6}
+      >
+        <Avatar
+          className="invitation"
+          icon="user-add"
+          onClick={[Function]}
+          shape="circle"
+          size="default"
+        />
+        초대
+      </Col>
+      <Col
+        span={6}
+      >
+        <Upload
+          accept="image/*"
+          action=""
+          beforeUpload={[Function]}
+          className=""
+          data={Object {}}
+          disabled={false}
+          key="picture"
+          listType="text"
+          multiple={false}
+          showUploadList={true}
+          supportServerRender={true}
+          type="select"
+        >
+          <Avatar
+            className="image"
+            icon="picture"
+            shape="circle"
+            size="default"
+          />
+          이미지
+        </Upload>
+      </Col>
+      <Col
+        span={6}
+      >
+        <Avatar
+          className="pay"
+          icon="wallet"
+          onClick={[Function]}
+          shape="circle"
+          size="default"
+        />
+        송금
+      </Col>
+      <Col
+        span={6}
+      >
+        <Avatar
+          className="map"
+          icon="environment"
+          onClick={[Function]}
+          shape="circle"
+          size="default"
+        />
+        지도
+      </Col>
+    </Row>
+  </div>
+</div>
+`;

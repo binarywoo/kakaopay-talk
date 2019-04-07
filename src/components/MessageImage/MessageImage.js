@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react'
 import ImageModal from '../ImageModal/index'
 import { scrollToBottom } from '../../libs/chatAppUtils'
 
-const MessageImage = ({ src }) => {
+const MessageImage = ({ src, preventScroll }) => {
   const [showImageModal, setShowImageModal] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
 

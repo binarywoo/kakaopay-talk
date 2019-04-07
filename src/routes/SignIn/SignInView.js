@@ -1,43 +1,16 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Input, Form, Layout, Button } from 'antd'
-import { USER_KEY } from '../../constants/commonConstants'
 
-const SignInView = ({
-  userService,
-  firebase,
-  form,
-  userAction,
-  history,
-  headerAction
-}) => {
+const SignInView = ({ form, onSubmit }) => {
   const [isLoading, setLoading] = useState(false)
 
-  useEffect(() => {
-    headerAction.receiveTitle('로그인')
-  }, [])
-
-  const onSubmit = useCallback(() => {
+  const handleOnSubmit = useCallback(() => {
     form.validateFields((err, values) => {
       if (!err) {
         setLoading(true)
-        userService
-          .getUserByUserId(values.userId)
-          .then(user => {
-            if (!user) {
-              return userService
-                .postUser({ userId: values.userId })
-                .then(user => {
-                  localStorage.setItem(USER_KEY, user.key)
-                  history.push('/chat-list')
-                })
-            } else {
-              localStorage.setItem(USER_KEY, user.key)
-              history.push('/chat-list')
-            }
-          })
-          .finally(() => {
-            setLoading(false)
-          })
+        onSubmit(values.userId).finally(() => {
+          setLoading(false)
+        })
       }
     })
   }, [])
@@ -59,10 +32,15 @@ const SignInView = ({
                   message: '1~8자리의 아이디를 입력해주세요.'
                 }
               ]
-            })(<Input onPressEnter={onSubmit} />)}
+            })(<Input onPressEnter={handleOnSubmit} />)}
           </Form.Item>
           <Form.Item>
-            <Button type='primary' block loading={isLoading} onClick={onSubmit}>
+            <Button
+              type='primary'
+              block
+              loading={isLoading}
+              onClick={handleOnSubmit}
+            >
               로그인
             </Button>
           </Form.Item>

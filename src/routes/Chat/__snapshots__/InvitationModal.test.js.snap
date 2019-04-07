@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InvitationModal 스냅샷과 매칭이 된다. 1`] = `
+<Modal
+  cancelButtonDisabled={false}
+  confirmLoading={false}
+  footer={null}
+  maskTransitionName="fade"
+  okButtonDisabled={false}
+  okType="primary"
+  onCancel={[Function]}
+  title="대화상대 초대"
+  transitionName="zoom"
+  visible={true}
+  width={520}
+>
+  <List
+    bordered={false}
+    dataSource={
+      Array [
+        Object {
+          "key": "d",
+          "userId": "d",
+        },
+        Object {
+          "key": "e",
+          "userId": "e",
+        },
+        Object {
+          "key": "f",
+          "userId": "f",
+        },
+      ]
+    }
+    itemLayout="horizontal"
+    loading={false}
+    pagination={false}
+    renderItem={[Function]}
+    split={true}
+    style={
+      Object {
+        "padding": "0 12px",
+      }
+    }
+  />
+</Modal>
+`;
