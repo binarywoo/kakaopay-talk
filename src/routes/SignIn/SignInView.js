@@ -55,8 +55,8 @@ const SignInView = ({
                 },
                 {
                   min: 1,
-                  max: 12,
-                  message: '4~12자리의 아이디를 입력해주세요.'
+                  max: 8,
+                  message: '1~8자리의 아이디를 입력해주세요.'
                 }
               ]
             })(<Input onPressEnter={onSubmit} />)}

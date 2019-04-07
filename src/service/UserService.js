@@ -21,6 +21,10 @@ class UserService {
   getAllUser = () => {
     return this.dao.readAllUser()
   }
+
+  putUser = (path, data) => {
+    return this.dao.updateUser(path, data)
+  }
 }
 
 export default UserService

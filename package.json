@@ -16,9 +16,13 @@
     "bfj": "6.1.1",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "classnames": "^2.2.6",
+    "cropperjs": "^1.5.1",
     "css-loader": "1.0.0",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "enzyme-to-json": "^3.3.5",
     "eslint": "5.12.0",
     "eslint-config-react-app": "^3.0.8",
     "eslint-loader": "2.1.1",
@@ -33,12 +37,12 @@
     "identity-obj-proxy": "3.0.0",
     "immutable": "^4.0.0-rc.12",
     "jest": "23.6.0",
+    "jest-dom": "^3.1.3",
     "jest-pnp-resolver": "1.0.2",
     "jest-resolve": "23.6.0",
     "jest-watch-typeahead": "^0.2.1",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
-    "lodash": "^4.17.11",
     "mini-css-extract-plugin": "0.5.0",
     "moment": "^2.24.0",
     "moment-locales-webpack-plugin": "^1.0.7",
@@ -50,6 +54,8 @@
     "postcss-safe-parser": "4.0.1",
     "react": "^16.8.6",
     "react-app-polyfill": "^0.2.2",
+    "react-color": "^2.17.0",
+    "react-cropper": "^1.2.0",
     "react-dev-utils": "^8.0.0",
     "react-dom": "^16.8.6",
     "react-hot-loader": "^4.8.2",
@@ -57,6 +63,8 @@
     "react-loadable": "^5.5.0",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
+    "react-test-renderer": "^16.8.6",
+    "react-testing-library": "^6.1.2",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "resolve": "1.10.0",
@@ -127,7 +135,11 @@
     "watchPlugins": [
       "/Users/leewoonghee/Projects/chat-app/node_modules/jest-watch-typeahead/filename.js",
       "/Users/leewoonghee/Projects/chat-app/node_modules/jest-watch-typeahead/testname.js"
-    ]
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js"
   },
   "babel": {
     "presets": [

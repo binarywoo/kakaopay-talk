@@ -33,6 +33,10 @@ class UserDao {
     const newUser = Object.assign({}, user, { key })
     return childSetAndReturnResult(this.ref, key, newUser)
   }
+
+  updateUser = (path, data) => {
+    return this.ref.child(path).set(data)
+  }
 }
 
 export default UserDao

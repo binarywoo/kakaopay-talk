@@ -8,7 +8,8 @@ import {
   Modal,
   List,
   Divider,
-  message as antdMessage
+  message as antdMessage,
+  Avatar
 } from 'antd'
 import classNames from 'classnames'
 import moment from 'moment'
@@ -67,6 +68,9 @@ const ChatView = ({
       })
 
     scrollToBottom()
+    return () => {
+      subscribeAction.clearSubscribe('messages')
+    }
   }, [match.params.key])
 
   useEffect(() => {
@@ -79,7 +83,8 @@ const ChatView = ({
       type: 'text',
       user: user.key,
       userId: user.userId,
-      lastUpdate: new Date().toISOString()
+      lastUpdate: new Date().toISOString(),
+      profileImage: user.profileImage || null
     }
     messageService.postMessage(chat.key, newMessage)
     setMessage('')
@@ -143,7 +148,9 @@ const ChatView = ({
   )
 
   return (
-    <ContentContainer style={{ background: '#4286f4' }}>
+    <ContentContainer
+      style={{ background: user.backgroundColor || 'rgb(18, 115, 222)' }}
+    >
       <div style={{ padding: '12px 12px 68px 12px' }}>
         {messages &&
           messages.map((item, idx) => {
@@ -176,6 +183,13 @@ const ChatView = ({
               >
                 {showDivider && (
                   <Divider className='date-divider'>{date}</Divider>
+                )}
+                {!isMyMessage && (
+                  <Avatar
+                    src={item.profileImage}
+                    icon={!item.profileImage ? 'user' : null}
+                    style={{ marginRight: 5, position: 'absolute' }}
+                  />
                 )}
                 <Alert
                   className={classNames(
@@ -244,7 +258,9 @@ const ChatView = ({
               padding: '0 12px'
             }}
             itemLayout='horizontal'
-            dataSource={userList.filter(item => item.key !== user.key)}
+            dataSource={userList.filter(
+              item => item.key !== user.key && !chat.users[item.key]
+            )}
             renderItem={user => {
               moment.locale('ko')
               return (

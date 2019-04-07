@@ -93,7 +93,7 @@ const ChatListView = ({
           }}
         >
           <Button
-            icon='coffee'
+            icon='plus'
             block
             type='primary'
             size='large'

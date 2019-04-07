@@ -1,3 +1,5 @@
+@import '~antd/lib/style/themes/default.less';
+
 .base-container {
   max-width: 800px;
   width: 100%;
@@ -32,6 +34,50 @@
   .kakao-header {
     .ant-page-header-title-view-title {
       max-width: 250px;
+    }
+  }
+}
+
+.menu-drawer {
+  .ant-drawer-title {
+    color: #fff;
+  }
+  .ant-drawer-header {
+    background: @primary-color;
+    color: #fff;
+    border-radius: 0;
+    span,
+    p {
+      color: #fff;
+    }
+    .point-info {
+      margin-top: 1em;
+      color: #fff;
+      font-size: 12px;
+      .value {
+        font-weight: 700;
+        a {
+          color: #fff;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .ant-drawer-close {
+    color: #fff;
+  }
+  .ant-drawer-body {
+    padding: 0;
+  }
+  .ant-menu-inline {
+    border-right: none;
+  }
+  .setting-zone {
+    padding: 10px 22px;
+    .github-picker {
+      margin-right: 0 !important;
+      width: 100% !important;
+      box-shadow: unset !important;
     }
   }
 }
