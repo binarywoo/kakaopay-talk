@@ -9,8 +9,13 @@ class MessageService {
   }
 
   postMessage = (chatKey, message) => {
-    this.chatDao.updateChat(`${chatKey}/lastMessage`, message.content)
-    this.chatDao.updateChat(`${chatKey}/lastUpdate`, new Date().toISOString())
+    if (message.type !== 'participate') {
+      this.chatDao.updateChat(
+        `${chatKey}/lastMessage`,
+        message.type === 'text' ? message.content : '사진'
+      )
+      this.chatDao.updateChat(`${chatKey}/lastUpdate`, new Date().toISOString())
+    }
     return this.dao.createMessage(chatKey, message)
   }
 }

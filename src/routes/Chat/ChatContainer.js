@@ -43,6 +43,7 @@ class ChatContainer extends PureComponent {
       title: '채팅방 나가기',
       content: '채팅방을 나가시겠습니까?',
       onOk: () => {
+        this._sendParticipateMessage('out')
         const { match, chatService, user, history, chat } = this.props
         const chatKey = match.params.key
         if (Object.keys(chat.users).length === 1) {
@@ -68,11 +69,10 @@ class ChatContainer extends PureComponent {
     } = this.props
     const chatKey = match.params.key
 
-    // 채팅방에 내가 없을 경우 참여
+    // 채팅방의 내 참여 정보를 업데이트
     chatService.getChat(chatKey).then(chat => {
-      if (!chat.users[user.key]) {
-        chatService.participateChat(chatKey, user)
-      }
+      chatService.participateChatUser(chatKey, user)
+      if (!chat.users[user.key]) this._sendParticipateMessage('in')
     })
 
     // 채팅방에 참여 후 채팅방 상태 구독
@@ -167,6 +167,19 @@ class ChatContainer extends PureComponent {
         messageService.postMessage(chat.key, newMessage)
         return Promise.resolve()
       })
+  }
+
+  _sendParticipateMessage = inOrOut => {
+    const { user, messageService, chat } = this.props
+    const newMessage = {
+      content: inOrOut,
+      type: 'participate',
+      user: user.key,
+      userId: user.userId,
+      lastUpdate: new Date().toISOString()
+    }
+    messageService.postMessage(chat.key, newMessage)
+    return Promise.resolve()
   }
 
   _sendInvitation = invitation => {

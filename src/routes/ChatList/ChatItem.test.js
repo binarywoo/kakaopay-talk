@@ -22,10 +22,18 @@ describe('ChatItem', () => {
   const props = {
     item: Object.assign({}, DUMMY_CHAT, {
       users: {
-        '1': 'a',
-        '2': 'b',
-        '3': 'c',
-        '4': 'd'
+        '1': {
+          userId: 'a'
+        },
+        '2': {
+          userId: 'b'
+        },
+        '3': {
+          userId: 'c'
+        },
+        '4': {
+          userId: 'd'
+        }
       },
       lastUpdate: nowISOString
     }),
@@ -56,8 +64,8 @@ describe('ChatItem', () => {
   it('참여자 목록을 정상적으로 렌더링한다.', () => {
     expect(wrapper.find('.chat-users').text()).toBe('a, b, c 외 1명 참여중')
     const newProps = fromJS(props)
-      .setIn(['item', 'users', '4'], null)
-      .setIn(['item', 'users', '3'], null)
+      .deleteIn(['item', 'users', '4'])
+      .deleteIn(['item', 'users', '3'])
       .toJS()
     wrapper = mount(<ChatItem {...newProps} />)
     expect(wrapper.find('.chat-users').text()).toBe('a, b 참여중')

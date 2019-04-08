@@ -3,10 +3,10 @@ import { compose } from 'redux'
 
 import ChatListView from './ChatListView'
 import withForm from '../../hocs/withForm'
-import withUserAndFirebaseAndRouter from '../../hocs/withUser'
+import withUser from '../../hocs/withUser'
 import withHeader from '../../hocs/withHeader'
 import withSubscribe from '../../hocs/withSubscribe'
-import withServiceAndFirebase from '../../hocs/withService'
+import withService from '../../hocs/withService'
 import ChatService from '../../service/ChatService'
 
 class ChatListContainer extends PureComponent {
@@ -38,7 +38,7 @@ class ChatListContainer extends PureComponent {
 }
 
 const wrappedChatListView = compose(
-  withUserAndFirebaseAndRouter({ isUserRequired: true }),
+  withUser({ isUserRequired: true }),
   withForm,
   withHeader,
   withSubscribe([
@@ -47,7 +47,7 @@ const wrappedChatListView = compose(
       key: 'chatList'
     }
   ]),
-  withServiceAndFirebase([
+  withService([
     {
       key: 'chatService',
       service: ChatService

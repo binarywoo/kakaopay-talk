@@ -1,9 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MessageInput 스냅샷과 매칭이 된다. 1`] = `
+exports[`MessageInput 스냅샷과 일치한다. 1`] = `
 <div
   className="chat-input-wrapper"
-  offsetBottom={0}
 >
   <div
     style={

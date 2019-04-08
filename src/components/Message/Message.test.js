@@ -25,7 +25,7 @@ describe('Message', () => {
     wrapper = shallow(<Message {...dummyProps} />)
   })
 
-  it('스냅샷과 매칭이 된다.', () => {
+  it('스냅샷과 일치한다.', () => {
     expect(wrapper).toMatchSnapshot()
   })
 
@@ -95,5 +95,17 @@ describe('Message', () => {
       )
       expect(wrapper.find('.message-row').hasClass('my-message')).toBe(true)
     })
+  })
+
+  it('participate 타입의 메시지를 정상적으로 보여준다.', () => {
+    wrapper = shallow(
+      <Message
+        {...fromJS(dummyProps)
+          .setIn(['item', 'type'], 'participate')
+          .setIn(['item', 'content'], 'in')
+          .toJS()}
+      />
+    )
+    expect(wrapper.find('.participate-message').length).toBe(1)
   })
 })

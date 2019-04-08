@@ -17,9 +17,7 @@ const ChatItem = ({ item, goToChat, isParticipated }) => {
 
   const getUsers = useCallback(() => {
     const keys = Object.keys(item.users)
-    const userIds = keys
-      .filter(key => item.users[key])
-      .map(key => item.users[key])
+    const userIds = keys.map(key => item.users[key] && item.users[key].userId)
     const userCnt = countUsers()
     if (userCnt > 3) {
       return `${userIds.slice(0, 3).join(', ')} 외 ${userCnt - 3}명 참여중`

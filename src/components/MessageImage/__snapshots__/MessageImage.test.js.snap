@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MessageImage 스냅샷과 매칭이 된다. 1`] = `
+exports[`MessageImage 스냅샷과 일치한다. 1`] = `
 <div>
   <img
     alt="https://s.pstatic.net/static/www/img/2018/sp_search.svg"

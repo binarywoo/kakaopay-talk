@@ -7,25 +7,36 @@ const MessageList = ({ messages, user }) => {
       {messages &&
         messages.map((item, idx) => {
           const isMyMessage = user.key === item.user
-          const time = window.moment(item.lastUpdate).format('HH:mm')
+          const lastUpdateMoment = window.moment(item.lastUpdate)
+          const time = lastUpdateMoment.format('HH:mm')
+
           const prevMessage = idx > 0 ? messages[idx - 1] : null
-          const prevDate = prevMessage
-            ? window.moment(prevMessage.lastUpdate).format('YYYY-MM-DD')
+          const prevLastUpdateMoment = prevMessage
+            ? window.moment(prevMessage.lastUpdate)
             : null
-          const date = window.moment(item.lastUpdate).format('YYYY-MM-DD')
+
+          const prevDate = prevMessage
+            ? prevLastUpdateMoment.format('YYYY-MM-DD')
+            : null
+          const date = lastUpdateMoment.format('YYYY-MM-DD')
+
           const nextMessage =
             idx < messages.length - 1 ? messages[idx + 1] : null
+          const nextLastUpdateMoment = nextMessage
+            ? window.moment(nextMessage.lastUpdate)
+            : null
           const nextTime = nextMessage
-            ? window.moment(nextMessage.lastUpdate).format('HH:mm')
+            ? nextLastUpdateMoment.format('HH:mm')
             : null
           const nextDate = nextMessage
-            ? window.moment(nextMessage.lastUpdate).format('YYYY-MM-DD')
+            ? nextLastUpdateMoment.format('YYYY-MM-DD')
             : null
           const nextUserId =
             idx < messages.length - 1 ? nextMessage.userId : null
+
           const prevUserId = prevMessage ? prevMessage.userId : null
           const prevTime = prevMessage
-            ? window.moment(prevMessage.lastUpdate).format('HH:mm')
+            ? prevLastUpdateMoment.format('HH:mm')
             : null
 
           let showTag = true
@@ -34,18 +45,22 @@ const MessageList = ({ messages, user }) => {
           if (
             nextTime === time &&
             nextDate === date &&
-            nextUserId === item.userId
+            nextUserId === item.userId &&
+            nextMessage.type !== 'participate'
           )
             showTag = false
           if (prevDate !== date) showDivider = true
           if (
             item.userId !== prevUserId ||
             prevTime !== time ||
-            prevDate !== date
+            prevDate !== date ||
+            prevMessage.type === 'participate'
           )
             showProfile = true
+
           return (
             <Message
+              key={item.key}
               isMyMessage={isMyMessage}
               showDivider={showDivider}
               showTag={showTag}

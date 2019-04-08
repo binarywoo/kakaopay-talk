@@ -29,7 +29,7 @@ describe('HeaderView', () => {
     wrapper = shallow(<HeaderView {...props} />)
   })
 
-  it('스냅샷과 매칭이 된다.', () => {
+  it('스냅샷과 일치한다.', () => {
     expect(wrapper).toMatchSnapshot()
   })
 

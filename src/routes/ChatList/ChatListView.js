@@ -25,7 +25,10 @@ const ChatListView = ({ form, user, chatList, createChat, goToChat }) => {
         const newChat = {
           title: values.title,
           users: {
-            [user.key]: user.userId
+            [user.key]: {
+              userId: user.userId,
+              participate: new Date().toISOString()
+            }
           },
           lastUpdate: new Date().toISOString()
         }
