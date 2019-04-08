@@ -1,5 +1,4 @@
 import React from 'react'
-import moment from 'moment'
 import Message from '../../components/Message/index'
 
 const MessageList = ({ messages, user }) => {
@@ -8,25 +7,25 @@ const MessageList = ({ messages, user }) => {
       {messages &&
         messages.map((item, idx) => {
           const isMyMessage = user.key === item.user
-          const time = moment(item.lastUpdate).format('HH:mm')
+          const time = window.moment(item.lastUpdate).format('HH:mm')
           const prevMessage = idx > 0 ? messages[idx - 1] : null
           const prevDate = prevMessage
-            ? moment(prevMessage.lastUpdate).format('YYYY-MM-DD')
+            ? window.moment(prevMessage.lastUpdate).format('YYYY-MM-DD')
             : null
-          const date = moment(item.lastUpdate).format('YYYY-MM-DD')
+          const date = window.moment(item.lastUpdate).format('YYYY-MM-DD')
           const nextMessage =
             idx < messages.length - 1 ? messages[idx + 1] : null
           const nextTime = nextMessage
-            ? moment(nextMessage.lastUpdate).format('HH:mm')
+            ? window.moment(nextMessage.lastUpdate).format('HH:mm')
             : null
           const nextDate = nextMessage
-            ? moment(nextMessage.lastUpdate).format('YYYY-MM-DD')
+            ? window.moment(nextMessage.lastUpdate).format('YYYY-MM-DD')
             : null
           const nextUserId =
             idx < messages.length - 1 ? nextMessage.userId : null
           const prevUserId = prevMessage ? prevMessage.userId : null
           const prevTime = prevMessage
-            ? moment(prevMessage.lastUpdate).format('HH:mm')
+            ? window.moment(prevMessage.lastUpdate).format('HH:mm')
             : null
 
           let showTag = true

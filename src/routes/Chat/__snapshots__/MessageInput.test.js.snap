@@ -27,6 +27,7 @@ exports[`MessageInput 스냅샷과 매칭이 된다. 1`] = `
         />
       }
       onChange={[Function]}
+      onFocus={[Function]}
       onSearch={null}
       value=""
     />

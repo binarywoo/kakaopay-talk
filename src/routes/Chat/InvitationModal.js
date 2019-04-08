@@ -1,6 +1,5 @@
 import React from 'react'
 import { Modal, List } from 'antd'
-import moment from 'moment'
 import SpinContainer from '../../components/SpinContainer/index'
 
 const InvitationModal = ({
@@ -29,7 +28,6 @@ const InvitationModal = ({
             item => item.key !== user.key && !chat.users[item.key]
           )}
           renderItem={user => {
-            moment.locale('ko')
             return (
               <List.Item
                 onClick={() => onClickUser(user)}

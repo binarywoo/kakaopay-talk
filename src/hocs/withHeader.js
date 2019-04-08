@@ -2,7 +2,12 @@ import React, { PureComponent } from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 
-import { receiveHeader, receiveTitle, receiveBackPath } from '../store/header'
+import {
+  receiveHeader,
+  receiveTitle,
+  receiveBackPath,
+  receiveExtra
+} from '../store/header'
 
 export default ComposedComponent => {
   class withHeader extends PureComponent {
@@ -19,7 +24,8 @@ export default ComposedComponent => {
     headerAction: {
       receiveHeader: header => dispatch(receiveHeader(header)),
       receiveTitle: title => dispatch(receiveTitle(title)),
-      receiveBackPath: backPath => dispatch(receiveBackPath(backPath))
+      receiveBackPath: backPath => dispatch(receiveBackPath(backPath)),
+      receiveExtra: extraComponent => dispatch(receiveExtra(extraComponent))
     }
   })
 

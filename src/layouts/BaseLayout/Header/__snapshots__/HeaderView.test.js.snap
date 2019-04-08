@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderView 스냅샷과 매칭이 된다. 1`] = `
+<Affix
+  offsetTop={0}
+  target={[Function]}
+>
+  <PageHeader
+    backIcon={
+      <Icon
+        type="arrow-left"
+      />
+    }
+    className="kakao-header"
+    extra={
+      Array [
+        <Icon
+          type="export"
+        />,
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "cursor": "pointer",
+              "display": "inline-block",
+              "marginRight": 24,
+            }
+          }
+        >
+          <Icon
+            type="logout"
+          />
+        </div>,
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "cursor": "pointer",
+              "display": "inline-block",
+            }
+          }
+        >
+          <Icon
+            type="setting"
+          />
+        </div>,
+      ]
+    }
+    title="test"
+  />
+  <MenuDrawer
+    form={Object {}}
+    onApplyProfileImage={[MockFunction]}
+    onChangeBackgroundColor={[MockFunction]}
+    onClose={[Function]}
+    show={false}
+    user={
+      Object {
+        "key": "-LbmTnQw-OjNS87fDbBt",
+        "userId": "이웅희",
+      }
+    }
+  />
+</Affix>
+`;

@@ -1,18 +1,19 @@
 import React, { PureComponent } from 'react'
 import { compose } from 'redux'
+import { Icon } from 'antd'
 
 import ChatView from './ChatView'
 import withSubscribe from '../../hocs/withSubscribe'
-import withView from '../../hocs/withView'
-import withServiceAndFirebase from '../../hocs/withService'
+import withService from '../../hocs/withService'
 import ChatService from '../../service/ChatService'
 import withHeader from '../../hocs/withHeader'
 import MessageService from '../../service/MessageService'
-import withUserAndFirebaseAndRouter from '../../hocs/withUser'
+import withUser from '../../hocs/withUser'
 import withUpload from '../../hocs/withStorage'
 import InvitationService from '../../service/InvitationService'
 import { convertSnapshotToArr } from '../../libs/daoUtils'
 import { scrollToBottom } from '../../libs/chatAppUtils'
+import ConfirmModal from '../../components/ConfirmModal/index'
 
 class ChatContainer extends PureComponent {
   componentDidMount() {
@@ -20,17 +21,38 @@ class ChatContainer extends PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.match.params.key !== this.props.match.params.key) {
-      this._unlistenToMessage(prevProps.match.params.key)
+    if (
+      this.props.match.params.key &&
+      prevProps.match.params.key !== this.props.match.params.key
+    ) {
       this._listenToMessage()
+      this._unlistenToMessage(prevProps.match.params.key)
     }
   }
 
   componentWillUnmount() {
-    const { subscribeAction, match } = this.props
+    const { subscribeAction, match, headerAction } = this.props
     const chatKey = match.params.key
     this._unlistenToMessage(chatKey)
     subscribeAction.clearSubscribe('messages')
+    headerAction.receiveExtra(null)
+  }
+
+  _handleOnClickExit = () => {
+    ConfirmModal({
+      title: '채팅방 나가기',
+      content: '채팅방을 나가시겠습니까?',
+      onOk: () => {
+        const { match, chatService, user, history, chat } = this.props
+        const chatKey = match.params.key
+        if (Object.keys(chat.users).length === 1) {
+          chatService.deleteChat(chatKey)
+        } else {
+          chatService.deleteChat(`${chatKey}/users/${user.key}`)
+        }
+        history.push('/chat-list')
+      }
+    })
   }
 
   _listenToMessage = () => {
@@ -40,25 +62,48 @@ class ChatContainer extends PureComponent {
       history,
       user,
       headerAction,
-      viewAction,
       header,
       firebase,
       subscribeAction
     } = this.props
     const chatKey = match.params.key
 
+    // 채팅방에 내가 없을 경우 참여
     chatService.getChat(chatKey).then(chat => {
-      if (!chat) return history.push('/404')
-      viewAction.receiveView('chat', chat)
       if (!chat.users[user.key]) {
-        chatService.participateChat(chatKey, user.key)
+        chatService.participateChat(chatKey, user)
       }
-      headerAction.receiveHeader({
-        title: chat.title,
-        backPath: header.backPath || '/chat-list'
-      })
     })
 
+    // 채팅방에 참여 후 채팅방 상태 구독
+    firebase
+      .database()
+      .ref(`chats/${chatKey}`)
+      .on('value', snapshot => {
+        const chat = snapshot.val()
+        if (!chat) return history.push('/404')
+        subscribeAction.receiveSubscribe('chat', chat)
+        // 헤더에 채팅방 나가기 버튼 생성
+        headerAction.receiveHeader({
+          title: chat.title,
+          backPath: header.backPath || '/chat-list',
+          extra: (
+            <div
+              key='exit'
+              style={{
+                cursor: 'export',
+                display: 'inline-block',
+                marginRight: 24
+              }}
+              onClick={this._handleOnClickExit}
+            >
+              <Icon type='export' />
+            </div>
+          )
+        })
+      })
+
+    // 채팅방의 메시지 구독
     firebase
       .database()
       .ref(`messages/${chatKey}`)
@@ -77,6 +122,10 @@ class ChatContainer extends PureComponent {
     firebase
       .database()
       .ref(`messages/${chatKey}`)
+      .off('value')
+    firebase
+      .database()
+      .ref(`chats/${chatKey}`)
       .off('value')
   }
 
@@ -142,14 +191,12 @@ const wrappedChatView = compose(
   withSubscribe([
     {
       key: 'messages'
-    }
-  ]),
-  withView([
+    },
     {
       key: 'chat'
     }
   ]),
-  withServiceAndFirebase([
+  withService([
     {
       service: ChatService,
       key: 'chatService'
@@ -165,7 +212,7 @@ const wrappedChatView = compose(
   ]),
   withHeader,
   withUpload,
-  withUserAndFirebaseAndRouter({ isUserRequired: true })
+  withUser({ isUserRequired: true })
 )(ChatContainer)
 
 export default wrappedChatView

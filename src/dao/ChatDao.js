@@ -31,6 +31,10 @@ class ChatDao {
   updateChatUsers = (chatKey, userKey, boolean) => {
     return this.ref.child(`${chatKey}/users/${userKey}`).set(boolean)
   }
+
+  deleteChat = key => {
+    return this.ref.child(key).remove()
+  }
 }
 
 export default ChatDao

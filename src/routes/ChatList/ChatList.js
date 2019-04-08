@@ -1,6 +1,6 @@
 import React from 'react'
 import { List } from 'antd'
-import moment from 'moment'
+import { orderBy } from 'lodash'
 import ChatItem from './ChatItem'
 
 const ChatList = ({ list, goToChat, user }) => {
@@ -14,9 +14,8 @@ const ChatList = ({ list, goToChat, user }) => {
         padding: '0 12px'
       }}
       itemLayout='horizontal'
-      dataSource={list.slice().reverse()}
+      dataSource={orderBy(list, ['lastUpdate'], ['desc'])}
       renderItem={item => {
-        moment.locale('ko')
         return (
           <ChatItem
             item={item}

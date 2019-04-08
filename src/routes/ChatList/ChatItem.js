@@ -1,14 +1,13 @@
 import React, { useCallback } from 'react'
 import { List, Avatar, Tag } from 'antd'
-import moment from 'moment'
 
 const ChatItem = ({ item, goToChat, isParticipated }) => {
-  const getDateFormat = useCallback(item => {
-    const now = moment()
-    const dayDiff = now.diff(item.lastUpdate, 'days')
-    if (dayDiff < 1) return 'HH:mm'
-    else if (dayDiff < 365) return 'MM-DD'
-    else return 'YYYY-MM-DD'
+  const getDateFormat = useCallback(lastMoment => {
+    const now = window.moment()
+    const dayDiff = now.diff(lastMoment, 'days')
+    if (dayDiff < 3) return lastMoment.fromNow()
+    else if (dayDiff < 365) return lastMoment.format('MM-DD')
+    else return lastMoment.format('YYYY-MM-DD')
   }, [])
 
   const countUsers = useCallback(() => {
@@ -16,9 +15,22 @@ const ChatItem = ({ item, goToChat, isParticipated }) => {
     return keys.filter(key => item.users[key]).length
   }, [item])
 
+  const getUsers = useCallback(() => {
+    const keys = Object.keys(item.users)
+    const userIds = keys
+      .filter(key => item.users[key])
+      .map(key => item.users[key])
+    const userCnt = countUsers()
+    if (userCnt > 3) {
+      return `${userIds.slice(0, 3).join(', ')} 외 ${userCnt - 3}명 참여중`
+    } else {
+      return `${userIds.join(', ')} 참여중`
+    }
+  }, [item])
+
   return (
     <List.Item
-      actions={[moment(item.lastUpdate).format(getDateFormat(item))]}
+      actions={[getDateFormat(window.moment(item.lastUpdate))]}
       onClick={() => goToChat(item)}
       style={{ cursor: 'pointer' }}
     >
@@ -30,7 +42,12 @@ const ChatItem = ({ item, goToChat, isParticipated }) => {
             {item.title}
           </div>
         }
-        description={item.lastMessage}
+        description={
+          <div>
+            <p style={{ marginBottom: 0 }}>{item.lastMessage}</p>
+            <small className='chat-users'>{getUsers()}</small>
+          </div>
+        }
       />
     </List.Item>
   )

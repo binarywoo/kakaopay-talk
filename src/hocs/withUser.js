@@ -7,8 +7,9 @@ import { clearUser, receiveUser } from '../store/user'
 import { isEmpty } from '../libs/commonUtils'
 import { USER_KEY } from '../constants/commonConstants'
 import SpinContainer from '../components/SpinContainer'
-import withServiceAndFirebase from './withService'
+import withService from './withService'
 import UserService from '../service/UserService'
+import withSubscribe from './withSubscribe'
 
 // options
 // isUserRequired - 로그인이 꼭 필요한 페이지
@@ -30,14 +31,17 @@ export default (
 
     _autoSignIn = () => {
       // 로컬스토리지에 유저정보가 있을 경우 자동으로 로그인
-      const { userAction, userService } = this.props
+      const { userAction, firebase } = this.props
       if (!this.state.isUserLoaded) {
         const userKey = localStorage.getItem(USER_KEY)
         if (userKey) {
-          userService.getUser(userKey).then(user => {
-            userAction.receiveUser(user)
-            this.setState({ isUserLoaded: true })
-          })
+          firebase
+            .database()
+            .ref(`users/${userKey}`)
+            .on('value', snapshot => {
+              userAction.receiveUser(snapshot.val())
+              this.setState({ isUserLoaded: true })
+            })
         } else {
           this.setState({ isUserLoaded: true })
         }
@@ -71,10 +75,15 @@ export default (
 
   return compose(
     withRouter,
-    withServiceAndFirebase([
+    withSubscribe([
       {
-        service: UserService,
-        key: 'userService'
+        key: 'user'
+      }
+    ]),
+    withService([
+      {
+        key: 'userService',
+        service: UserService
       }
     ]),
     connect(

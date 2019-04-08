@@ -36,7 +36,7 @@ const MessageInput = ({
   }, [])
 
   return (
-    <div className='chat-input-wrapper' offsetBottom={0}>
+    <div className='chat-input-wrapper'>
       <div
         style={{
           padding: 12,
@@ -47,6 +47,7 @@ const MessageInput = ({
         <Input.Search
           value={message}
           onChange={onChange}
+          onFocus={() => setShowHiddenMenu(false)}
           addonBefore={
             <Icon
               type={showHiddenMenu ? 'minus' : 'plus'}

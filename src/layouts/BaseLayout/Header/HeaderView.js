@@ -79,35 +79,46 @@ const HeaderView = ({
     }
   }, [invitations])
 
+  const getExtraCompnent = useCallback(() => {
+    const { extra } = header
+    const component = []
+    if (user) {
+      if (extra) component.push(extra)
+      component.push(
+        <div
+          key='logout'
+          style={{
+            cursor: 'pointer',
+            display: 'inline-block',
+            marginRight: 24
+          }}
+          onClick={handleOnClickLogout}
+        >
+          <Icon type='logout' />
+        </div>
+      )
+      component.push(
+        <div
+          key='settings'
+          style={{ cursor: 'pointer', display: 'inline-block' }}
+          onClick={handleOnClickMyMenu}
+        >
+          <Icon type='setting' />
+        </div>
+      )
+    } else {
+      if (extra) component.push(extra)
+    }
+    return component
+  })
+
   return (
     <Affix offsetTop={0}>
       <PageHeader
         className='kakao-header'
         onBack={onBack()}
         title={header.title || '까까오톡'}
-        extra={
-          header.extra ||
-          (user && [
-            <div
-              key='logout'
-              style={{
-                cursor: 'pointer',
-                display: 'inline-block',
-                marginRight: 24
-              }}
-              onClick={handleOnClickLogout}
-            >
-              <Icon type='logout' />
-            </div>,
-            <div
-              key='settings'
-              style={{ cursor: 'pointer', display: 'inline-block' }}
-              onClick={handleOnClickMyMenu}
-            >
-              <Icon type='setting' />
-            </div>
-          ])
-        }
+        extra={getExtraCompnent()}
       />
       <MenuDrawer
         show={showDrawer}

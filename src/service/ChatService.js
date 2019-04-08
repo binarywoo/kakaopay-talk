@@ -22,12 +22,16 @@ class ChatService {
     return this.dao.readChat(key)
   }
 
-  participateChat = (chatKey, userKey) => {
-    return this.dao.updateChatUsers(chatKey, userKey, true)
+  participateChat = (chatKey, user) => {
+    return this.dao.updateChatUsers(chatKey, user.key, user.userId)
   }
 
   putChat = (path, data) => {
     return this.dao.updateChat(path, data)
+  }
+
+  deleteChat = key => {
+    return this.dao.deleteChat(key)
   }
 }
 
