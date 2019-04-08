@@ -86,8 +86,9 @@ bash deploy.sh
 
 - 로그인 시 로그아웃 버튼과 설정 버튼이 상시 존재
 - 채팅방에서는 채팅방 나가기 버튼이 추가됨
-- 세팅 메뉴에서 채팅방 배경 색설정 가능
-- 세팅 메뉴에서 프로필사진 설정 가능
+- 설정 메뉴에서 채팅방 배경 색설정 가능
+- 설정 메뉴에서 프로필사진 설정 가능
+- 프로필사진 설정 시 이미지 Crop 기능
 - 화면별로 타이틀이 변경됨
 - depth가 있는 곳에서는 뒤로가기 버튼 노출
 
@@ -164,3 +165,29 @@ bash deploy.sh
 - 리스닝 하던 데이터는 화면 언마운트 시 리스닝을 중단하여 성능저하를 최소화 함
 - 카카오톡의 친숙한 UI 차용
 - React.js의 최신 기능인 hooks를 적극 활용하여 많은 컴포넌트들을 functional 컴포넌트로 구현함으로써 성능을 극대화함
+
+## 폴더구조
+
+```
+- config [웹팩설정]
+- public [정적리소스]
+- scripts [npm 스크립트]
+- src [소스]
+ - components [공용컴포넌트]
+ - constants [상수]
+ - contexts [리액트 컨텍스트]
+ - dao [DAO Layer 구현]
+ - hoc [Higher Order Components]
+ - layouts [레이아웃 컴포넌트]
+ - libs [유틸리티]
+ - routes [경로별 Container와 View 구현]
+ - service [Service Layer 구현]
+ - store [Redux 스토어 및 Reducers]
+ App.js [최상위 컴포넌트]
+ App.less [전역 스타일]
+ index.css [보일러플레이트 기본 스타일]
+ index.js [전체 최상위 JS파일]
+ initialize.js [전역변수 정의 파일]
+ serviceWorker.js [서비스워커 사용 시 작성(현재 사용 안함)]
+ setupTests.js [Enzyme 사용하기 위한 설정파일]
+```
