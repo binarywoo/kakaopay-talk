@@ -25,10 +25,6 @@ describe('Message', () => {
     wrapper = shallow(<Message {...dummyProps} />)
   })
 
-  it('스냅샷과 일치한다.', () => {
-    expect(wrapper).toMatchSnapshot()
-  })
-
   describe('divider를 정상적으로 표현', () => {
     it('showDivider가 true일 경우 divider를 렌더링한다.', () => {
       expect(wrapper.find(Divider).length).toBe(1)

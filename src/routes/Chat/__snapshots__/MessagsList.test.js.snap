@@ -149,7 +149,7 @@ exports[`MessageList 스냅샷과 일치한다. 1`] = `
           >
             <AnimateChild
               animation={Object {}}
-              key="rc_animate_1554731386003"
+              key="rc_animate_1554733228355"
               transitionAppear={false}
               transitionEnter={true}
               transitionLeave={true}
@@ -158,7 +158,7 @@ exports[`MessageList 스냅샷과 일치한다. 1`] = `
               <div
                 className="ant-alert ant-alert-info ant-alert-no-icon message-box"
                 data-show={true}
-                key="rc_animate_1554731386003"
+                key="rc_animate_1554733228355"
               >
                 <span
                   className="ant-alert-message"
@@ -328,7 +328,7 @@ exports[`MessageList 스냅샷과 일치한다. 1`] = `
           >
             <AnimateChild
               animation={Object {}}
-              key="rc_animate_1554731386003"
+              key="rc_animate_1554733228355"
               transitionAppear={false}
               transitionEnter={true}
               transitionLeave={true}
@@ -337,7 +337,7 @@ exports[`MessageList 스냅샷과 일치한다. 1`] = `
               <div
                 className="ant-alert ant-alert-info ant-alert-no-icon message-box"
                 data-show={true}
-                key="rc_animate_1554731386003"
+                key="rc_animate_1554733228355"
               >
                 <span
                   className="ant-alert-message"
