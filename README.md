@@ -143,7 +143,7 @@ bash deploy.sh
 
 #### Container Layer
 
-- View에서 필요한 Service들과 Redux store의 reducer 등, 필요한 공통요소들을 HOC를 통해 넘겨받음
+- View에서 필요한 Service들과 Redux store의 reducer 등, 필요한 공통요소들을 HOC를 조합하여 넘겨받음
 - View에서 필요한 Service를 호출하고 reducer의 Action을 호출하는 로직이 존재
 - View에서 필요한 로직과 전역상태들을 Props로 전달
 
@@ -163,3 +163,4 @@ bash deploy.sh
 - 각 화면마다 실시간으로 보여줘야 하는 데이터들을 구분하여 화면마다 다르게 데이터를 리스닝
 - 리스닝 하던 데이터는 화면 언마운트 시 리스닝을 중단하여 성능저하를 최소화 함
 - 카카오톡의 친숙한 UI 차용
+- React.js의 최신 기능인 hooks를 적극 활용하여 많은 컴포넌트들을 functional 컴포넌트로 구현함으로써 성능을 극대화함
