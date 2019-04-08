@@ -35,16 +35,16 @@ bash deploy.sh
 
 ### 프론트엔드
 
-- React.js(https://reactjs.org/) 프레임워크 사용 (v.16.8.6)
-- create-react-app(https://facebook.github.io/create-react-app/docs/getting-started)으로 기본 보일러플레이트 구성하여 시작
-- And Design(https://ant.design/)의 UI 컴포넌트 사용
-- React Router(https://reacttraining.com/react-router/web/guides/quick-start)로 라우팅 구현
-- Redux(https://lunit.gitbook.io/redux-in-korean/)로 전역 상태관리
-- jest(https://jestjs.io/)와 Enzyme(https://airbnb.io/enzyme/)으로 테스트코드 작성
+- [React.js](https://reactjs.org/) 프레임워크 사용 (v.16.8.6)
+- [create-react-app](https://facebook.github.io/create-react-app/docs/getting-started)으로 기본 보일러플레이트 구성하여 시작
+- [And Design](https://ant.design/)의 UI 컴포넌트 사용
+- [React Router](https://reacttraining.com/react-router/web/guides/quick-start)로 라우팅 구현
+- [Redux](https://lunit.gitbook.io/redux-in-korean/)로 전역 상태관리
+- [jest](https://jestjs.io/)와 [Enzyme](https://airbnb.io/enzyme/)으로 테스트코드 작성
 
 ### 백엔드
 
-- Firebase(https://firebase.google.com/?hl=ko)의 실시간 데이터 베이스 및 스토리지 사용
+- [Firebase](https://firebase.google.com/?hl=ko)의 실시간 데이터 베이스 및 스토리지 사용
 
 ## 페이지 별 주요 기능
 
