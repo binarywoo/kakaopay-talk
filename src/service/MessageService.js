@@ -18,6 +18,10 @@ class MessageService {
     }
     return this.dao.createMessage(chatKey, message)
   }
+
+  putMessage = (path, data) => {
+    return this.dao.updateMessage(path, data)
+  }
 }
 
 export default MessageService

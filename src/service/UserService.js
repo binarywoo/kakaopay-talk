@@ -1,9 +1,11 @@
 import UserDao from '../dao/UserDao'
+import MessageDao from '../dao/MessageDao'
 
 class UserService {
   constructor(firebase) {
     this.firebase = firebase
     this.dao = new UserDao(firebase)
+    this.messageDao = new MessageDao(firebase)
   }
 
   getUserByUserId = userId => {

@@ -1,13 +1,5 @@
 import React, { useCallback } from 'react'
-import {
-  Avatar,
-  Upload,
-  Row,
-  Col,
-  Input,
-  Icon,
-  message as antdMessage
-} from 'antd'
+import { Avatar, Upload, Row, Col, Input, Icon } from 'antd'
 import classNames from 'classnames'
 import MessageModal from '../../components/MessageModal/index'
 
@@ -22,8 +14,7 @@ const MessageInput = ({
 }) => {
   const beforeImageUpload = useCallback(file => {
     setShowHiddenMenu(false)
-    const hide = antdMessage.loading('이미지 업로드 중..', 0)
-    sendImageMessage(file).then(() => hide())
+    sendImageMessage(file)
     return false
   }, [])
 

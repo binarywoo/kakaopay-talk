@@ -1,7 +1,7 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import Message from './index'
-import { Divider, Avatar } from 'antd'
+import { Divider, Avatar, Icon } from 'antd'
 import { DUMMY_IMG_URL } from '../../constants/testConstants'
 import { fromJS } from 'immutable'
 
@@ -103,5 +103,22 @@ describe('Message', () => {
       />
     )
     expect(wrapper.find('.participate-message').length).toBe(1)
+  })
+
+  it('loading 타입의 메시지를 정상적으로 보여준다.', () => {
+    wrapper = mount(
+      <Message
+        {...fromJS(dummyProps)
+          .setIn(['item', 'type'], 'loading')
+          .setIn(['item', 'content'], '사진')
+          .toJS()}
+      />
+    )
+    expect(
+      wrapper
+        .find(Icon)
+        .at(1)
+        .prop('type')
+    ).toBe('loading')
   })
 })

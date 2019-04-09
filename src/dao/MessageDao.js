@@ -10,6 +10,10 @@ class MessageDao {
     const newMessage = Object.assign({}, message, { key })
     return childSetAndReturnResult(this.ref.child(chatKey), key, newMessage)
   }
+
+  updateMessage = (path, dao) => {
+    return this.ref.child(path).set(dao)
+  }
 }
 
 export default MessageDao

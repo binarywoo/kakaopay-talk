@@ -59,10 +59,6 @@ describe('MessageList', () => {
     wrapper = mount(<MessageList {...props} />)
   })
 
-  it('스냅샷과 일치한다.', () => {
-    expect(wrapper).toMatchSnapshot()
-  })
-
   it('date divider를 정상적으로 렌더링한다.', () => {
     expect(wrapper.find('.ant-divider-inner-text').text()).toBe('2019-04-08')
   })

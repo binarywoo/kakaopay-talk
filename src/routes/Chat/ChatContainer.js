@@ -9,7 +9,7 @@ import ChatService from '../../service/ChatService'
 import withHeader from '../../hocs/withHeader'
 import MessageService from '../../service/MessageService'
 import withUser from '../../hocs/withUser'
-import withUpload from '../../hocs/withStorage'
+import withStorage from '../../hocs/withStorage'
 import InvitationService from '../../service/InvitationService'
 import { convertSnapshotToArr } from '../../libs/daoUtils'
 import { scrollToBottom } from '../../libs/chatAppUtils'
@@ -149,23 +149,34 @@ class ChatContainer extends PureComponent {
 
   _sendImageMessage = file => {
     const { storage, user, messageService, chat } = this.props
-    return storage
-      .upload('messageImage', file)
-      .then(res => {
-        const path = res.metadata.fullPath
-        return storage.getDownloadUrl(path)
-      })
-      .then(url => {
-        const newMessage = {
-          content: url,
-          type: 'image',
-          user: user.key,
-          userId: user.userId,
-          lastUpdate: new Date().toISOString(),
-          profileImage: user.profileImage || null
-        }
-        messageService.postMessage(chat.key, newMessage)
-        return Promise.resolve()
+    const loadingMessage = {
+      content: '사진',
+      type: 'loading',
+      user: user.key,
+      userId: user.userId,
+      lastUpdate: new Date().toISOString(),
+      profileImage: user.profileImage || null
+    }
+    return messageService
+      .postMessage(chat.key, loadingMessage)
+      .then(createdLoadingMessage => {
+        return storage
+          .upload('messageImage', file)
+          .then(res => {
+            const path = res.metadata.fullPath
+            return storage.getDownloadUrl(path)
+          })
+          .then(url => {
+            const newMessage = Object.assign({}, createdLoadingMessage, {
+              content: url,
+              type: 'image'
+            })
+            messageService.putMessage(
+              `${chat.key}/${createdLoadingMessage.key}`,
+              newMessage
+            )
+            return Promise.resolve(newMessage)
+          })
       })
   }
 
@@ -224,7 +235,7 @@ const wrappedChatView = compose(
     }
   ]),
   withHeader,
-  withUpload,
+  withStorage,
   withUser({ isUserRequired: true })
 )(ChatContainer)
 
