@@ -138,8 +138,8 @@
       "node"
     ],
     "watchPlugins": [
-      "/Users/leewoonghee/Projects/chat-app/node_modules/jest-watch-typeahead/filename.js",
-      "/Users/leewoonghee/Projects/chat-app/node_modules/jest-watch-typeahead/testname.js"
+      "<rootDir>/node_modules/jest-watch-typeahead/filename.js",
+      "<rootDir>/node_modules/jest-watch-typeahead/testname.js"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
