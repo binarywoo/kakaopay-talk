@@ -130,7 +130,7 @@ bash deploy.sh
 -----------------------------------------------
 ```
 
-#### Data Base Layer
+#### Database Layer
 
 - 데이터를 저장하고 파일을 저장하는 계층 (Firebase)
 

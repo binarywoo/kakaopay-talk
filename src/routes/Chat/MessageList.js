@@ -1,62 +1,62 @@
-import React from 'react'
-import Message from '../../components/Message/index'
+import React from 'react';
+import Message from '../../components/Message/index';
 
 const MessageList = ({ messages, user }) => {
   return (
     <div>
       {messages &&
         messages.map((item, idx) => {
-          const isMyMessage = user.key === item.user
-          const lastUpdateMoment = window.moment(item.lastUpdate)
-          const time = lastUpdateMoment.format('HH:mm')
+          const isMyMessage = user.key === item.user;
+          const lastUpdateMoment = window.moment(item.lastUpdate);
+          const time = lastUpdateMoment.format('HH:mm');
 
-          const prevMessage = idx > 0 ? messages[idx - 1] : null
+          const prevMessage = idx > 0 ? messages[idx - 1] : null;
           const prevLastUpdateMoment = prevMessage
             ? window.moment(prevMessage.lastUpdate)
-            : null
+            : null;
 
           const prevDate = prevMessage
             ? prevLastUpdateMoment.format('YYYY-MM-DD')
-            : null
-          const date = lastUpdateMoment.format('YYYY-MM-DD')
+            : null;
+          const date = lastUpdateMoment.format('YYYY-MM-DD');
 
           const nextMessage =
-            idx < messages.length - 1 ? messages[idx + 1] : null
+            idx < messages.length - 1 ? messages[idx + 1] : null;
           const nextLastUpdateMoment = nextMessage
             ? window.moment(nextMessage.lastUpdate)
-            : null
+            : null;
           const nextTime = nextMessage
             ? nextLastUpdateMoment.format('HH:mm')
-            : null
+            : null;
           const nextDate = nextMessage
             ? nextLastUpdateMoment.format('YYYY-MM-DD')
-            : null
+            : null;
           const nextUserId =
-            idx < messages.length - 1 ? nextMessage.userId : null
+            idx < messages.length - 1 ? nextMessage.userId : null;
 
-          const prevUserId = prevMessage ? prevMessage.userId : null
+          const prevUserId = prevMessage ? prevMessage.userId : null;
           const prevTime = prevMessage
             ? prevLastUpdateMoment.format('HH:mm')
-            : null
+            : null;
 
-          let showTag = true
-          let showDivider = false
-          let showProfile = false
+          let showTag = true;
+          let showDivider = false;
+          let showProfile = false;
           if (
             nextTime === time &&
             nextDate === date &&
             nextUserId === item.userId &&
             nextMessage.type !== 'participate'
           )
-            showTag = false
-          if (prevDate !== date) showDivider = true
+            showTag = false;
+          if (prevDate !== date) showDivider = true;
           if (
             item.userId !== prevUserId ||
             prevTime !== time ||
             prevDate !== date ||
             prevMessage.type === 'participate'
           )
-            showProfile = true
+            showProfile = true;
 
           return (
             <Message
@@ -69,10 +69,10 @@ const MessageList = ({ messages, user }) => {
               time={time}
               item={item}
             />
-          )
+          );
         })}
     </div>
-  )
-}
+  );
+};
 
-export default MessageList
+export default MessageList;
